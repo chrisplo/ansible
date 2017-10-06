@@ -4,35 +4,35 @@
 # Local install
 - name: copy ovs file (redhat)
   copy: src={{ contiv_standalone_binaries }}/openvswitch-2.5.0-2.el7.x86_64.rpm dest=/tmp/openvswitch-2.5.0-2.el7.x86_64.rpm
-  when: ansible_os_family == "RedHat" and contiv_network_local_install == True
+  when: ansible_os_family == "RedHat" and contiv_network_local_install|bool
 
 
 - name: install ovs (redhat)
   yum: name=/tmp/openvswitch-2.5.0-2.el7.x86_64.rpm state=present
-  when: ansible_os_family == "RedHat" and contiv_network_local_install == True
+  when: ansible_os_family == "RedHat" and contiv_network_local_install|bool
   tags:
     - prebake-for-dev
 
 
 - name: copy ovs common file (debian)
   copy: src={{ contiv_standalone_binaries }}/ovs-common.deb dest=/tmp/ovs-common.deb
-  when: ansible_os_family == "Debian" and contiv_network_local_install == True
+  when: ansible_os_family == "Debian" and contiv_network_local_install|bool
 
 - name: copy ovs switch file (debian)
   copy: src={{ contiv_standalone_binaries }}/ovs-switch.deb dest=/tmp/ovs-switch.deb
-  when: ansible_os_family == "Debian" and contiv_network_local_install == True
+  when: ansible_os_family == "Debian" and contiv_network_local_install|bool
 
 
 
 - name: install ovs-common (debian)
   apt: "deb=/tmp/ovs-common.deb"
-  when: ansible_os_family == "Debian" and contiv_network_local_install == True
+  when: ansible_os_family == "Debian" and contiv_network_local_install|bool
   tags:
     - prebake-for-dev
 
 - name: install ovs (debian)
   apt: "deb=/tmp/ovs-switch.deb"
-  when: ansible_os_family == "Debian" and contiv_network_local_install == True
+  when: ansible_os_family == "Debian" and contiv_network_local_install|bool
   tags:
     - prebake-for-dev
 
