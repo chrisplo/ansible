@@ -18,6 +18,6 @@
   when: v2plugin_installed|failed
 
 - name: for v2 plugin, extract netctl binary
-  shell: tar vxjf {{ contiv_network_dest_file }} netctl contrib/completion/bash/netctl
+  shell: tar vxf {{ contiv_network_dest_file }} netctl contrib/completion/bash/netctl
   args:
     chdir: /usr/bin/contiv/netplugin
